@@ -158,7 +158,7 @@ void design_print_field(int width, int height, int curser[], char **field)
 				} else if (field[i][j] == '7') {
 					printf(PURPLE " 7 " RESET);
 				} else if (field[i][j] == '8') {
-					printf(GRAY " 8 " RESET);
+					printf(LIGHT_GRAY " 8 " RESET);
 				} else if (field[i][j] == 'f') {
 					printf(CYAN " F " RESET);
 				} else {

@@ -14,6 +14,7 @@
 #define YELLOW  "\x1B[33m"
 #define DARK_BLUE 	"\x1b[34;1m"
 #define DARK_RED 	"\x1b[31;1m"
+#define LIGHT_GRAY 	"\x1b[37m"
 
 #define UNDERLINE "\033[4m"
 #define BOLD "\033[1m"
@@ -27,6 +28,7 @@
 /* Text */
 void design_menu_content(void);
 void design_dificulty_content(void);
+void design_anleitung(void);
 
 /* Menu */
 int design_menu_main(int *width, int *height, double *mine_perc, char *name, int *difficulty);
