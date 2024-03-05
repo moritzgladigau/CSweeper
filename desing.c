@@ -20,6 +20,11 @@ void design_dificulty_content(void)
 	printf("5. Back\n");
 }
 
+void design_anleitung(void)
+{
+	printf(UNDERLINE BOLD "Hier Muss Noch was hin\n" RESET);
+}
+
 /* Menu */
 int design_menu_main(int *width, int *height, double *mine_perc, char *name, int *difficulty)
 {
@@ -47,13 +52,16 @@ int design_menu_main(int *width, int *height, double *mine_perc, char *name, int
 				}
 				break;
 			case 4:
-				printf("Case 4");
+				printf("Anleitung\n");
+				design_anleitung();
+				printf("Um Fortzufahren ");
+				get_user_numb(1);
 				break;
 			case 5:
 				printf("Case 5");
 				break;
 			case 6:
-				printf("Case 6");
+				printf("Programm Beenden\n");
 				return 0;
 		}
 	} while (choice != 1);
