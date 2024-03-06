@@ -1,5 +1,14 @@
 #include "userinput.h"
 
+int move_key_up = 'w';
+int move_key_down = 's';
+int move_key_left = 'a';
+int move_key_right = 'd';
+int help_key = 'h';
+int open_key = 'o';
+int flag_key = 'f';
+int quit_key = 'q';
+
 void clear(void) {
 	system(CLEAR_COMMAND);
 }
@@ -50,4 +59,69 @@ char *get_user_name(int length)
 	
 	flush();
 	return name;
+}
+
+
+int get_user_key(void)
+{
+	int re, c;
+	re = getchar();
+	if (re == 27) {
+		c = getchar();
+		re += c;
+		if (c == 91) {
+			c = getchar();
+			re += c;
+		}
+	}
+	return re;	
+}
+
+int handle_userinput(int width, int height, int curser[])
+{
+	int k = get_user_key();
+	
+	if (k == move_key_up || k == move_key_down || k == move_key_left || k == move_key_right) {
+		curser_move(width, height, curser, k);
+		return SUCCSES;
+	} else if (k == help_key) {
+		design_anleitung();
+	} else if (k == open_key) {
+		return OPEN;
+	} else if (k == flag_key) {
+		return FLAG;
+	} else if (k == quit_key) {
+		return QUIT;
+	} else {
+		printf("falsche eingabe\n");
+		return ERROR;
+	}
+	return SUCCSES;
+}
+
+void curser_move(int width, int height, int curser[], int key)
+{
+
+	if (key == move_key_up) {
+		curser[1]--;
+	} else if (key == move_key_down) {
+		curser[1]++;
+	} else if (key == move_key_left) {
+		curser[0]--;
+	} else if (key == move_key_right) {
+		curser[0]++;
+	}
+
+	if (curser[0] < 0) {
+		curser[0] = width - 1;
+	}
+	if (curser[0] >= width) {
+		curser[0] = 0;
+	}
+	if (curser[1] < 0) {
+		curser[1] = height - 1;
+	}
+	if (curser[1] >= height) {
+		curser[1] = 0;
+	}
 }

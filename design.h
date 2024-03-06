@@ -25,18 +25,22 @@
 
 #define FIELD_MIN 03
 
+#define ERROR_IS_FLAG -1
+#define ERROR_IS_OPEN -2
+#define GAME_END -100
+
 /* Text */
 void design_menu_content(void);
 void design_dificulty_content(void);
 void design_anleitung(void);
 
 /* Menu */
-int design_menu_main(int *width, int *height, double *mine_perc, char *name, int *difficulty);
+int design_menu_main(int *width, int *height, double *mine_perc, char **name, int *difficulty);
 void design_menu_dificulty(int *width, int *height, double *mine_perc, int *difficulty);
 
 /* logic */
 void design_print_field(int width, int height, int curser[], char **field);
 char *difficulty_to_char(int difficulty);
-
+void info_texte(int arg);
 
 #endif

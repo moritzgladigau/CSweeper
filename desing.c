@@ -23,16 +23,19 @@ void design_dificulty_content(void)
 void design_anleitung(void)
 {
 	printf(UNDERLINE BOLD "Hier Muss Noch was hin\n" RESET);
+
+	printf("Um Fortzufahren ");
+	get_user_numb(1);
 }
 
 /* Menu */
-int design_menu_main(int *width, int *height, double *mine_perc, char *name, int *difficulty)
+int design_menu_main(int *width, int *height, double *mine_perc, char **name, int *difficulty)
 {
 	int choice;
 	do{
 		do {
 			clear();
-			printf("%s\tKartengroesse %ix%i\t Mine_perc %.1f\t Name: %s\n\n", difficulty_to_char(*difficulty), *width, *height, *mine_perc, name);
+			printf("%s\tKartengroesse %ix%i\t Mine_perc %.1f\t Name: %s\n\n", difficulty_to_char(*difficulty), *width, *height, *mine_perc, *name);
 			design_menu_content();
 			choice = get_user_numb(1);
 		} while (choice < 1 || choice > 6);
@@ -46,16 +49,14 @@ int design_menu_main(int *width, int *height, double *mine_perc, char *name, int
 				break;
 			case 3:
 				printf("Name Aendern\n");
-				name = get_user_name(MAX_NAME_LENGTH);
+				*name = get_user_name(MAX_NAME_LENGTH);
 				if (name == NULL) {
-					name = "user";
+					*name = "user";
 				}
 				break;
 			case 4:
 				printf("Anleitung\n");
 				design_anleitung();
-				printf("Um Fortzufahren ");
-				get_user_numb(1);
 				break;
 			case 5:
 				printf("Case 5");
@@ -183,5 +184,19 @@ char *difficulty_to_char(int difficulty)
 			return "User-Define";
 		default:
             		return "Unknown";
+	}
+}
+
+void info_texte(int c)
+{
+	switch (c) {
+		case ERROR_IS_FLAG:
+			printf(BOLD "INFO:" RESET " Das Feld kann nicht geoefnet werden.\n\t->Flage Entfernen mit der 'FLAG' Taste um es dann zu oeffnen.\n");
+			break;
+		case ERROR_IS_OPEN:
+			printf(BOLD "INFO:" RESET " Das Feld ist bereits geoefnet und kann d.h. nicht mehr bearbeitet werden.\n");
+			break;
+		default:
+			break;
 	}
 }

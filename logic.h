@@ -17,4 +17,10 @@ void logic_place_mine(int width, int height, char **field, int numb_of_mine);
 void logic_place_numb(int width, int height, char **field);
 
 int logic_count_surounding_bombs(int width, int height, char**field, int x, int y);
+
+int logic_key_aktion(int width, int height, int input, int curser[], char **afield, char **cfield, int *count_open, int *count_flag, int numb_of_mine);
+int logic_open_surounding(int width, int height, char **afield, char **cfield, int x, int y);
+
+int logic_check(int width, int height, char **afield, char **cfield, int cmine, int copen);
 #endif
+

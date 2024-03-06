@@ -94,3 +94,75 @@ int logic_count_surounding_bombs(int width, int height, char**field, int x, int 
 }
 
 
+int logic_key_aktion(int width, int height, int input, int curser[], char **afield, char **cfield, int *count_open, int *count_flag, int numb_of_mine)
+{
+	int x = curser[1];
+	int y = curser[0];
+
+	switch (input) {
+		case OPEN:
+			if (afield[x][y] != FLAG) {
+				(*count_open) += logic_open_surounding(width, height, afield, cfield, x, y);
+				if (cfield[x][y] == MINE) {
+					printf("Das Spiel ist vorbei");
+					return GAME_END;
+				}
+			} else {
+				return ERROR_IS_FLAG;
+			}
+			break;
+		case FLAG:
+			if (afield[x][y] == '-' || afield[x][y] == 'f') {
+				if (afield[x][y] != FLAG && (*count_flag) < numb_of_mine) {
+					afield[x][y] = 'f';
+					(*count_flag)++;
+				} else if (afield[x][y] == FLAG) {
+					afield[x][y] = '-';
+					(*count_flag)--;
+				}
+			} else {
+				return ERROR_IS_OPEN;
+			}
+	}
+	return SUCCSES;
+}
+
+int logic_open_surounding(int width, int height, char **afield, char **cfield, int x, int y)
+{
+	int count = 0;
+	if (x < 0 || x >= height || y < 0 || y >= width || afield[x][y] == '0') {
+        	return count;
+    	}
+
+	if (afield[x][y] == '-') {
+        	afield[x][y] = cfield[x][y];
+        	count++; 
+    	}
+
+	if (afield[x][y] == '0') {
+		count += logic_open_surounding(width, height, afield, cfield, x - 1, y - 1);
+		count += logic_open_surounding(width, height, afield, cfield, x - 0, y - 1);
+		count += logic_open_surounding(width, height, afield, cfield, x + 1, y - 1);
+		count += logic_open_surounding(width, height, afield, cfield, x - 1, y - 0);
+		count += logic_open_surounding(width, height, afield, cfield, x + 1, y - 0);
+		count += logic_open_surounding(width, height, afield, cfield, x - 1, y + 1);
+		count += logic_open_surounding(width, height, afield, cfield, x - 0, y + 1);
+		count += logic_open_surounding(width, height, afield, cfield, x + 1, y + 1);
+	}
+	return count;
+}
+		
+int logic_check(int width, int height, char **afield, char **cfield, int cmine, int copen)
+{
+	int i, j;
+	if (copen >= (width * height - cmine) * 90 / 100) {
+		for (i = 0; i < width; i++) {
+			for (j = 0; j < height; j++) {
+				if (afield[i][j] == FLAG && cfield[i][j] == MINE) {
+					cmine--;
+				}
+			}
+		}
+	}
+	return (cmine == 0) ? GAME_END : ERROR;
+}
