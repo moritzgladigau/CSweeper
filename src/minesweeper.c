@@ -2,6 +2,7 @@
 #include "logic.h"
 #include "userinput.h"
 #include "design.h"
+#include "wtxt.h"
 
 #define ERROR 0
 #define SUCCESS 1
@@ -29,6 +30,9 @@ int main (void)
 	printf("Hello World\n");
 
 	/* Funktionen Testen */ 	
+	check_if_file_exist(FILE_NAME_SAVE);
+	check_if_file_exist(FILE_NAME_LOG);
+	printf("=> %s\n", get_from_file_table(FILE_NAME_SAVE, 2, 2));
 
 	pic_minesweeper();
 
@@ -38,6 +42,8 @@ int main (void)
 			(strcmp(name, "user") != 0) ? free(name) : (void)0;
 			return 0;
 		}
+
+		create_save_file();
 
 
 		numb_of_mine = (width * height) * mine_perc / 100;
