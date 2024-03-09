@@ -3,12 +3,12 @@
 /* Text */
 void design_menu_content(void)
 {
-	printf("1. Spiel Starten\n");
+	printf(BOLD CYAN "1. Spiel Starten\n" RESET);
 	printf("2. Schwierigkeit\n");
 	printf("3. Spieler Name\n");
 	printf("4. Anleitung\n");
 	printf("5. Einstellungen\n");
-	printf("6. Programm Beenden\n");
+	printf(BOLD "6. Spiel Beenden\n" RESET);
 }
 
 void design_dificulty_content(void)
@@ -17,12 +17,42 @@ void design_dificulty_content(void)
 	printf("2. Intermediate\n");
 	printf("3. Expert\n");
 	printf("4. User-Define\n");
-	printf("5. Back\n");
+	printf(BOLD CYAN "5. Back\n" RESET);
+}
+
+void design_settings_content(void)
+{
+	printf("1. Tastenbelegung\n");
+	printf("2. Log Einsicht\n");
+	printf(BOLD CYAN "3. Back\n" RESET);
 }
 
 void design_anleitung(void)
 {
-	printf(UNDERLINE BOLD "Hier Muss Noch was hin\n" RESET);
+	clear();
+	printf(UNDERLINE BOLD "Anleitung/ Hilfestellung\n" RESET);
+	printf("In " BOLD "Minesweeper " RESET "geht es darum in einem vorgegebenen Feld eine bestimmte anzahl an " BOLD "Mienen " RESET "zu finden\nindem man diese mit " BOLD "Flagen " RESET "makiert.\n");
+	printf("Um zu " BOLD "gewinnen " RESET "muss mann in dieser version " BOLD "alle Mienen markieren " RESET "und mindestens\n" BOLD "90%% aller uebrigen Felder aufdecken.\n" RESET);
+	printf(GREEN "https://de.wikipedia.org/wiki/Minesweeper\n" RESET);
+	printf(UNDERLINE BOLD "Aktuelle Tastenbelegung\n" RESET);
+
+	printf("UP: ");
+	get_key_name(move_key_up);
+	printf("DOWN: ");
+	get_key_name(move_key_down);
+	printf("LEFT: ");
+	get_key_name(move_key_left);
+	printf("RIGHT: ");
+	get_key_name(move_key_right);
+	printf("\nOPEN: ");
+	get_key_name(open_key);
+	printf("FLAG: ");
+	get_key_name(flag_key);
+	printf("HELP: ");
+	get_key_name(help_key);
+	printf("QUIT: ");
+	get_key_name(quit_key);
+	printf("\n");
 
 	printf("Um Fortzufahren ");
 	get_user_numb(1);
@@ -55,14 +85,13 @@ int design_menu_main(int *width, int *height, double *mine_perc, char **name, in
 				}
 				break;
 			case 4:
-				printf("Anleitung\n");
 				design_anleitung();
 				break;
 			case 5:
-				printf("Case 5");
+				design_menu_settings();
 				break;
 			case 6:
-				printf("Programm Beenden\n");
+				printf(BOLD RED "Programm Beenden\n" RESET);
 				return 0;
 		}
 	} while (choice != 1);
@@ -127,6 +156,140 @@ void design_menu_dificulty(int *width, int *height, double *mine_perc, int *diff
 		}
 	} while (choice != 5);
 }
+
+void design_menu_settings(void)
+{
+	int choice;
+	
+	do{
+		do{ 
+			clear();
+			printf(BOLD UNDERLINE "\nSettings\n" RESET);
+			design_settings_content();
+			choice = get_user_numb(1);
+		} while (choice < 0 || choice > 3);
+
+		switch (choice) {
+			case 1:
+				design_menu_key_assignment();
+				break;
+			case 2:
+				break;
+		}
+	} while (choice != 3);
+}
+
+void design_menu_key_assignment(void)
+{
+	int choice;
+	int temp;
+
+	do{
+		do{
+			clear();
+			printf(BOLD UNDERLINE "\nkey_assignment\n" RESET);
+
+			printf("1. UP: ");
+			get_key_name(move_key_up);
+			printf("\n2. DOWN: ");
+			get_key_name(move_key_down);
+			printf("\n3. LEFT: ");
+			get_key_name(move_key_left);
+			printf("\n4. RIGHT: ");
+			get_key_name(move_key_right);
+			printf("\n5. OPEN: ");
+			get_key_name(open_key);
+			printf("\n6. FLAG: ");
+			get_key_name(flag_key);
+			printf("\n7. HELP: ");
+			get_key_name(help_key);
+			printf("\n8. QUIT: ");
+			get_key_name(quit_key);
+			printf(BOLD CYAN "\n\n9. Back\n" RESET);
+
+			print_multiple_occurrences();
+			printf("Die Zahlen 1-9 duerfen nicht belegt werden\n");
+
+			choice = get_user_numb(1);
+		} while (choice < 0 || choice > 9);
+
+		switch (choice) {
+			case 1:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-UP: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				move_key_up = temp;
+				get_key_name(move_key_up);
+				flush();
+				break;
+			case 2:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-DOWN: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				move_key_down = temp;
+				get_key_name(move_key_down);
+				flush();
+				break;
+			case 3:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-LEFT: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				move_key_left = temp;
+				get_key_name(move_key_left);
+				flush();
+				break;
+			case 4:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-RIGHT: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				move_key_right = temp;
+				get_key_name(move_key_right);
+				flush();
+				break;
+			case 5:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-OPEN: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				open_key = temp;
+				get_key_name(open_key);
+				flush();
+				break;
+			case 6:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-FLAG: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				flag_key = temp;
+				get_key_name(flag_key);
+				flush();
+				break;
+			case 7:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-HELP: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				help_key = temp;
+				get_key_name(help_key);
+				flush();
+				break;
+			case 8:
+				do{
+					printf(UNDERLINE "NEW" RESET BOLD "-QUIT: " RESET);
+					temp = get_user_key();
+				} while ((temp > '0' && temp <= '9') || temp == '\n');
+				quit_key = temp;
+				get_key_name(quit_key);
+				flush();
+				break;
+		}
+	} while (choice != 9 || print_multiple_occurrences() != 0);
+}
+
 
 
  /* logic */
@@ -200,3 +363,67 @@ void info_texte(int c)
 			break;
 	}
 }
+
+void get_key_name(int key_code) 
+{
+	if(key_code > 126) {
+		switch (key_code) {
+			case 183: printf("Arrow-Up\t"); break;
+			case 184: printf("Arrow-Down\t"); break;
+			case 185: printf("Arrow-Right\t"); break;
+			case 186: printf("Arrow-Left\t"); break;
+			default:  
+				  printf(" \t"); break;
+		}
+	} else {
+		printf("%c\t", key_code);
+	}
+}
+
+int print_multiple_occurrences(void)
+{
+	enum Keys {
+		MoveKeyUp = 1,
+		MoveKeyDown = 2,
+		MoveKeyLeft = 3,
+		MoveKeyRight = 4,
+		HelpKey = 8,
+		OpenKey = 5,
+		FlagKey = 7,
+		QuitKey = 6
+    	};
+
+	int keys[] = {MoveKeyUp, MoveKeyDown, MoveKeyLeft, MoveKeyRight, HelpKey, OpenKey, FlagKey, QuitKey};
+	int num_keys = sizeof(keys) / sizeof(keys[0]);
+	int occurrences[8] = {0};
+	int count = 0;
+	int i, j;
+
+	keys[0] = move_key_up;
+	keys[1] = move_key_down;
+	keys[2] = move_key_left;
+	keys[3] = move_key_right;
+	keys[4] = help_key;
+	keys[5] = open_key;
+	keys[6] = flag_key;
+	keys[7] = quit_key;
+
+	for (i = 0; i < num_keys - 1; i++) {
+		for (j = i + 1; j < num_keys; j++) {
+			if (keys[i] == keys[j]) {
+				occurrences[i] = keys[i];
+				count++;
+			}
+		}
+	}
+
+	for (i = 0; i < num_keys; i++) {
+		if (occurrences[i] > 0) {
+			printf(BOLD RED "ACHTUNG: " UNDERLINE);
+			get_key_name(occurrences[i]);
+			printf(RESET BOLD RED " ist mehrfach belegt!!!\n" RESET);
+		}
+	}
+	return count;
+}
+

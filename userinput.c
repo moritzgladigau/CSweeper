@@ -16,7 +16,7 @@ void clear(void) {
 void flush(void)
 {
         char c;
-        while ((c = getchar()) != EOF && c != '\n');
+	while ((c = getchar()) != '\n' && c != EOF);
 }
 
 int get_user_numb(int length)
@@ -80,10 +80,20 @@ int get_user_key(void)
 int handle_userinput(int width, int height, int curser[])
 {
 	int k = get_user_key();
+	int i, j;
 	
-	if (k == move_key_up || k == move_key_down || k == move_key_left || k == move_key_right) {
+	if (k > '0' && k <= '9') {
+		j = k;
+		k = get_user_key();
+		for (i = 0; i < j; i++) {
+			if (k == move_key_up || k == move_key_down || k == move_key_left || k == move_key_right) {
+				curser_move(width, height, curser, k);
+			}
+		}
+		return SUCCESS;
+	} else if (k == move_key_up || k == move_key_down || k == move_key_left || k == move_key_right) {
 		curser_move(width, height, curser, k);
-		return SUCCSES;
+		return SUCCESS;
 	} else if (k == help_key) {
 		design_anleitung();
 	} else if (k == open_key) {
@@ -96,7 +106,7 @@ int handle_userinput(int width, int height, int curser[])
 		printf("falsche eingabe\n");
 		return ERROR;
 	}
-	return SUCCSES;
+	return SUCCESS;
 }
 
 void curser_move(int width, int height, int curser[], int key)

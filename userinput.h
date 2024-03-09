@@ -24,7 +24,16 @@
 #define FLAG 'f'
 #define QUIT -3
 #define ERROR 0
-#define SUCCSES 1
+#define SUCCESS 1
+
+extern int move_key_up;
+extern int move_key_down;
+extern int move_key_left;
+extern int move_key_right;
+extern int help_key;
+extern int open_key;
+extern int flag_key;
+extern int quit_key;
 
 void clear(void);
 void flush(void);

@@ -104,7 +104,6 @@ int logic_key_aktion(int width, int height, int input, int curser[], char **afie
 			if (afield[x][y] != FLAG) {
 				(*count_open) += logic_open_surounding(width, height, afield, cfield, x, y);
 				if (cfield[x][y] == MINE) {
-					printf("Das Spiel ist vorbei");
 					return GAME_END;
 				}
 			} else {
@@ -124,7 +123,7 @@ int logic_key_aktion(int width, int height, int input, int curser[], char **afie
 				return ERROR_IS_OPEN;
 			}
 	}
-	return SUCCSES;
+	return SUCCESS;
 }
 
 int logic_open_surounding(int width, int height, char **afield, char **cfield, int x, int y)
