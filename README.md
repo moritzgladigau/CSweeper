@@ -7,6 +7,9 @@ Minesweeper ist eine klassische Einzelspieler-Puzzlespielanwendung, in der Spiel
 * Dieses Projekt dient mir als Übung und Einstieg in die erweiterte Programmierung.
 * Dies ist der Anfang des Projekts, weitere Features werden in Zukunft hinzugefügt werden. Möglicherweise werden zukünftige Versionen von C-89-Standard und Standardbibliotheken abweichen.
 * Die Entwicklung findet auf MacOS statt. Da jedoch nur C-Standardfunktionen verwendet werden, sollte das Spiel auf allen Plattformen kompiliert und fehlerfrei ausgeführt werden können.
+## Aktuelle Releases
+- [v1.0.0-beta](https://github.com/moritzgladigau/Minesweeper/releases/tag/beta) - Erste stabile Version des Spiels.
+
 ## Anleitung zum Kompilieren und Ausführen:
 1. Stellen Sie sicher, dass Sie einen C-Compiler installiert haben.
 2. Navigieren Sie zum Verzeichnis, in dem sich die Dateien des Spiels befinden.
