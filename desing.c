@@ -174,6 +174,8 @@ void design_menu_settings(void)
 				design_menu_key_assignment();
 				break;
 			case 2:
+				printf(BOLD YELLOW "Coming Soon\n" RESET);
+				get_user_numb(1);
 				break;
 		}
 	} while (choice != 3);
