@@ -18,3 +18,5 @@ Minesweeper ist eine klassische Einzelspieler-Puzzlespielanwendung, in der Spiel
 * Das Spiel endet, wenn der Spieler alle Minen gefunden hat oder auf eine Mine klickt.
 ## Autoren:
 Moritz Gladigau
+## Lizenz:
+Dieses Projekt ist unter der [MIT License] lizenziert. Weitere Informationen finden Sie in der Datei LICENSE.
