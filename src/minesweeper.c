@@ -30,7 +30,7 @@ int main (void)
 
 	/* Funktionen Testen */ 	
 
-	
+	pic_minesweeper();
 
 	/* Programm Start */
 	do{

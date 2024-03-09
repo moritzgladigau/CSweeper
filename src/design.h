@@ -17,6 +17,8 @@
 #define DARK_RED 	"\x1b[31;1m"
 #define LIGHT_GRAY 	"\x1b[37m"
 
+#define BLACK_BACKGROUND "\033[40m"
+
 #define UNDERLINE "\033[4m"
 #define BOLD "\033[1m"
 #define RESET   "\x1B[0m"
@@ -31,6 +33,7 @@
 #define GAME_END -100
 #define GAME_OVER -101
 
+void pic_minesweeper(void);
 
 /* Text */
 void design_menu_content(void);
