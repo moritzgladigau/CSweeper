@@ -44,13 +44,13 @@ void design_settings_content(void)
 void design_anleitung(void)
 {
 	clear();
-	printf(UNDERLINE BOLD "Anleitung/ Hilfestellung\n" RESET);
+	printf(UNDERLINE BOLD "\nAnleitung/ Hilfestellung\n" RESET);
 	printf("In " BOLD "Minesweeper " RESET "geht es darum in einem vorgegebenen Feld eine bestimmte anzahl an " BOLD "Mienen " RESET "zu finden\nindem man diese mit " BOLD "Flagen " RESET "makiert.\n");
 	printf("Um zu " BOLD "gewinnen " RESET "muss mann in dieser version " BOLD "alle Mienen markieren " RESET "und mindestens\n" BOLD "90%% aller uebrigen Felder aufdecken.\n" RESET);
 	printf(GREEN "https://de.wikipedia.org/wiki/Minesweeper\n" RESET);
-	printf(UNDERLINE BOLD "Aktuelle Tastenbelegung\n" RESET);
+	printf(UNDERLINE BOLD "\nAktuelle Tastenbelegung\n" RESET);
 
-	printf("UP: ");
+	printf("\tUP: ");
 	get_key_name(move_key_up);
 	printf("DOWN: ");
 	get_key_name(move_key_down);
@@ -58,7 +58,7 @@ void design_anleitung(void)
 	get_key_name(move_key_left);
 	printf("RIGHT: ");
 	get_key_name(move_key_right);
-	printf("\nOPEN: ");
+	printf("\n\tOPEN: ");
 	get_key_name(open_key);
 	printf("FLAG: ");
 	get_key_name(flag_key);
@@ -66,7 +66,10 @@ void design_anleitung(void)
 	get_key_name(help_key);
 	printf("QUIT: ");
 	get_key_name(quit_key);
-	printf("\n");
+	printf("\n\n");
+
+	printf("Look by ");
+	printf(BOLD GREEN "https://github.com/moritzgladigau/Minesweeper\n" RESET);
 
 	printf("Um Fortzufahren ");
 	get_user_numb(1);
