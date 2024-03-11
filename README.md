@@ -1,3 +1,4 @@
+![Bildbeschreibung](Minsweeper.png)
 # README für Minesweeper Game
 ## Über das Spiel:
 Minesweeper ist eine klassische Einzelspieler-Puzzlespielanwendung, in der Spieler durch geschicktes Kombinieren von Hinweisen auf versteckte Minen auf einem Rasterfeld stoßen, ohne eine zu detonieren.

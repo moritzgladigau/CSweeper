@@ -27,14 +27,10 @@ int main (void)
 
 	srand(time(NULL));
 
-	printf("Hello World\n");
 
 	/* Funktionen Testen */ 	
 	check_if_file_exist(FILE_NAME_SAVE);
 	check_if_file_exist(FILE_NAME_LOG);
-	printf("=> %s\n", get_from_file_table(FILE_NAME_SAVE, 2, 2));
-	get_max_row(FILE_NAME_LOG);
-	printf("GameID: %i\n", get_game_id());
 
 	pic_minesweeper();
 

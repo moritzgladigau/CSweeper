@@ -1,0 +1,9 @@
+Config C-Minesweeper v1.1.0-beta	~
+move_key_up:	119	~
+move_key_down:	115	~
+move_key_left:	97	~
+move_key_right:	100	~
+open_key:	111	~
+flag_key:	102	~
+quit_key:	113	~
+help_key:	104	~
