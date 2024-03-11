@@ -3,7 +3,7 @@
 
 void pic_minesweeper(void)
 {
-	printf(BLACK_BACKGROUND RED);
+	printf(RED);
 	printf("  _______  __                                                                   \n");
 	printf(" |   |   ||__|.-----..-----..-----..--.--.--..-----..-----..-----..-----..----. \n");
 	printf(" |       ||  ||     ||  -__||__ --||  |  |  ||  -__||  -__||  _  ||  -__||   _| \n");

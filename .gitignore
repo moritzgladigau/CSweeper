@@ -2,3 +2,4 @@
 Minesweeper
 *.swp
 .DS_Store
+*.txt

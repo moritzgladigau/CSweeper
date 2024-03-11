@@ -2,6 +2,7 @@
 #include "logic.h"
 #include "userinput.h"
 #include "design.h"
+#include "wtxt.h"
 
 #define ERROR 0
 #define SUCCESS 1
@@ -29,6 +30,11 @@ int main (void)
 	printf("Hello World\n");
 
 	/* Funktionen Testen */ 	
+	check_if_file_exist(FILE_NAME_SAVE);
+	check_if_file_exist(FILE_NAME_LOG);
+	printf("=> %s\n", get_from_file_table(FILE_NAME_SAVE, 2, 2));
+	get_max_row(FILE_NAME_LOG);
+	printf("GameID: %i\n", get_game_id());
 
 	pic_minesweeper();
 
@@ -38,6 +44,8 @@ int main (void)
 			(strcmp(name, "user") != 0) ? free(name) : (void)0;
 			return 0;
 		}
+
+		create_save_file();
 
 
 		numb_of_mine = (width * height) * mine_perc / 100;
@@ -90,15 +98,18 @@ int main (void)
 
 		if (info == GAME_END) {
 			printf(BOLD RED "Du hast leider verloren :/\n" RESET);
+			update_log_file(width, height, mine_perc, t_diff, difficulty, name, "Lose", count_open);
 		}
 		if (logic_check(width, height, a_field, c_field, numb_of_mine, count_open) == GAME_END) {
 			printf(BOLD CYAN "Du hast gewonnen :)\n");
+			update_log_file(width, height, mine_perc, t_diff, difficulty, name, "Win", count_open);
 		}
 		
 
 		/* Programm Ende */
 		logic_field_colaps(width, a_field);
 		logic_field_colaps(width, c_field);
+
 
 		if (input == QUIT) {
 			printf(BOLD RED "Spiel Abgebrochen & Programm Beenden\n" RESET);
