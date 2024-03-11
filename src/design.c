@@ -192,6 +192,7 @@ void design_menu_settings(void)
 				break;
 			case 2:
 				printf(BOLD YELLOW "Coming Soon\n" RESET);
+				print_entire_log();
 				get_user_numb(1);
 				break;
 		}
@@ -310,6 +311,26 @@ void design_menu_key_assignment(void)
 }
 
 
+void print_entire_log(void)
+{
+	int i;
+	printf(BOLD CYAN "----------------------------------LOG-FILE--------------------------------------\n" RESET);
+	printf(BOLD "Game-ID\tDay\tTime\tUsername\tGame-End\tDifficulty\tFieldsize\tMine-Perc\tPlaying-Time\tScore\n" RESET);
+	
+	for (i = 3; i <= get_max_row(FILE_NAME_LOG); i++) {
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 1));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 2));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 3));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 4));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 5));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 6));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 7));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 8));	
+		printf("%s\t", get_from_file_table(FILE_NAME_LOG, i, 9));	
+		printf("%s\n", get_from_file_table(FILE_NAME_LOG, i, 10));	
+		
+	}
+}
 
  /* logic */
 void design_print_field(int width, int height, int curser[], char **field)

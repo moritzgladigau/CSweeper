@@ -27,7 +27,6 @@ int main (void)
 
 	srand(time(NULL));
 
-
 	/* Funktionen Testen */ 	
 	check_if_file_exist(FILE_NAME_SAVE);
 	check_if_file_exist(FILE_NAME_LOG);

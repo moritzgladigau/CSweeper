@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "userinput.h"
+#include "wtxt.h"
 
 /* ANSI Escape Codes for text color */
 #define CYAN    "\x1B[36m"
@@ -47,6 +48,7 @@ int design_menu_main(int *width, int *height, double *mine_perc, char **name, in
 void design_menu_dificulty(int *width, int *height, double *mine_perc, int *difficulty);
 void design_menu_settings(void);
 void design_menu_key_assignment(void);
+void print_entire_log(void);
 
 /* logic */
 void design_print_field(int width, int height, int curser[], char **field);
