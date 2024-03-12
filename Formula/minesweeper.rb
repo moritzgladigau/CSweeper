@@ -1,5 +1,3 @@
-require "formula"
-
 class Minesweeper < Formula
   desc "A Minesweeper game in C for the terminal"
   homepage "https://github.com/moritzgladigau/Minesweeper"

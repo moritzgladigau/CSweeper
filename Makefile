@@ -1,7 +1,28 @@
+# Compilation flags
 CFLAGS = -Wall -Wextra -ansi -pedantic
 
-all: minesweeper
+# Source files directory
+SRCDIR = src
 
-minesweeper: src/*.c
-	gcc $(CFLAGS) -o minesweeper src/*.c
+# Output directory
+OUTDIR = bin
 
+# Source files
+SOURCES = $(wildcard $(SRCDIR)/*.c)
+
+# Executable name
+EXECUTABLE = minesweeper
+
+all: $(OUTDIR)/$(EXECUTABLE)
+
+$(OUTDIR)/$(EXECUTABLE): $(SOURCES)
+	@echo "Building executable: $@"
+	@mkdir -p $(OUTDIR)
+	gcc $(CFLAGS) -o $@ $^
+	@echo "Build complete"
+
+.PHONY: clean
+clean:
+	@echo "Cleaning up"
+	@rm -rf $(OUTDIR)
+	@echo "Cleanup complete"
