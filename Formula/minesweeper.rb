@@ -5,12 +5,17 @@ class Minesweeper < Formula
   sha256 "8e7f18d95bf40528c48afd7500075fdbc3816224eac2158e4fa877e590f73d83"
 
   def install
-    system "make" # Verwenden Sie ein Makefile, um das Spiel zu kompilieren
-    bin.install "minesweeper" # Installieren Sie die ausführbare Datei in das bin-Verzeichnis
+    # Create the bin directory if it doesn't exist
+    bin.mkpath
+
+    # Build the executable
+    system "make"
+
+    # Install the executable to the bin directory
+    bin.install "bin/minesweeper"
   end
 
   test do
     assert_match "Minesweeper", shell_output("#{bin}/minesweeper --version")
   end
 end
-

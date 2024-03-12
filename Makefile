@@ -17,7 +17,7 @@ all: $(OUTDIR)/$(EXECUTABLE)
 
 $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	@echo "Building executable: $@"
-	@mkdir -p $(OUTDIR)
+	@mkdir -p $(OUTDIR)  # Create output directory if it doesn't exist
 	gcc $(CFLAGS) -o $@ $^
 	@echo "Build complete"
 
