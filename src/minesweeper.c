@@ -57,6 +57,8 @@ char executable_path[PATH_MAX];
 	/* Funktionen Testen */ 	
 	check_if_file_exist(FILE_NAME_SAVE);
 	check_if_file_exist(FILE_NAME_LOG);
+    
+    printf("Das gehört hier nicht hin\n");
 
 	pic_minesweeper();
 
