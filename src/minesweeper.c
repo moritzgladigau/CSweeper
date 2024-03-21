@@ -5,6 +5,7 @@
 #include "wtxt.h"
 
 #include <unistd.h> // Für chdir()
+#include <limits.h> // Füge diese Zeile hinzu
 
 #define ERROR 0
 #define SUCCESS 1
