@@ -6,7 +6,7 @@
 
 #define VERSION "v1.1.0-beta"
 
-#define FILE_DIRECTORY "/opt/homebrew/Cellar/minesweeper/1.1.1-beta/txt/"
+#define FILE_DIRECTORY "../txt/"
 #define FILE_NAME_SAVE "Config_v.1.1.0-beta.txt"
 #define FILE_NAME_LOG "game-log.txt"
 
