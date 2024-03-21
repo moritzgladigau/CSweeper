@@ -4,6 +4,8 @@
 #include "design.h"
 #include "wtxt.h"
 
+#include <unistd.h> // Für chdir()
+
 #define ERROR 0
 #define SUCCESS 1
 
@@ -26,6 +28,30 @@ int main (void)
 	double t_diff;
 
 	srand(time(NULL));
+
+
+
+
+char executable_path[PATH_MAX];
+    ssize_t len = readlink("/proc/self/exe", executable_path, sizeof(executable_path) - 1);
+    if (len != -1) {
+        executable_path[len] = '\0';
+        // Extrahiere das Verzeichnis aus dem vollen Pfad
+        char *last_slash = strrchr(executable_path, '/');
+        if (last_slash != NULL) {
+            *last_slash = '\0'; // Setze das Ende des Pfads
+            // Setze das Arbeitsverzeichnis auf das Verzeichnis des ausführbaren Programms
+            chdir(executable_path);
+        }
+    }
+
+
+
+
+
+
+
+
 
 	/* Funktionen Testen */ 	
 	check_if_file_exist(FILE_NAME_SAVE);
