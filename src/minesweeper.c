@@ -30,7 +30,7 @@ int main (void)
 	srand(time(NULL));
 
 
-
+printf("Das gehört hier nicht hin\n");
 
 char executable_path[PATH_MAX];
     ssize_t len = readlink("/proc/self/exe", executable_path, sizeof(executable_path) - 1);
