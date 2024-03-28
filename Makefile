@@ -24,7 +24,7 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 
 create_home_dir:
 	@echo "Creating directory in home"
-	@mkdir -p ~/new_directory
+	@mkdir -p $(HOME)/new_directory
 	@echo "Directory created in home"
 
 
