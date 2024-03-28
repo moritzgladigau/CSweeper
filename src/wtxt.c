@@ -190,6 +190,8 @@ char *concatenate_path(const char *file_name) {
 		printf(BOLD RED "Speicherzuweisung fehlgeschlagen!\n" RESET);
 		return NULL;
 	}	
+
+	strcpy(path, home_directory);
 	strcpy(path, FILE_DIRECTORY);
 	strcat(path, file_name);
 	printf("Der Pfad ist: %s\n", path);	
