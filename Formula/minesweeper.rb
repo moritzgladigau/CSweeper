@@ -2,7 +2,8 @@ class Minesweeper < Formula
   desc "A Minesweeper game in C for the terminal"
   homepage "https://github.com/moritzgladigau/Minesweeper"
   url "https://github.com/moritzgladigau/Minesweeper/archive/refs/tags/v1.1.1-beta.tar.gz"
-  sha256 "1e1bafbeb317eb2997264a8cf2c0d2b149125d3904e640013ec2747ba457b1f6"
+  sha256 "8cc17ac5ad7552fcc5e020acda6f64777ea6e3b8f16391649bff1bd71f393bce"
+  # sha256 :no_check
 
   depends_on "gcc" # Abhängigkeit von GCC
   
@@ -15,6 +16,14 @@ class Minesweeper < Formula
 
     # Install the executable to the bin directory
     bin.install "bin/minesweeper"
+  end
+
+  def uninstall
+    # Entfernen Sie das ausführbare Spiel
+    rm bin/"minesweeper"
+
+    # Weitere Dateien oder Verzeichnisse entfernen, falls vorhanden
+    # Zum Beispiel Konfigurationsdateien, Datenverzeichnisse usw.
   end
 
   test do
