@@ -194,7 +194,7 @@ char *concatenate_path(const char *file_name) {
 	strcpy(path, home_directory);
 	strcat(path, FILE_DIRECTORY);
 	strcat(path, file_name);
-	printf("Der Pfad ist: %s\n", path);	
+	/* printf("Der Pfad ist: %s\n", path);	 */
 	return path;
 }
 
