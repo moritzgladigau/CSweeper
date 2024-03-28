@@ -24,8 +24,13 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 
 create_home_dir:
 	@echo "Creating directory in home"
-	@mkdir -p $(HOME)/new_directory
-	@echo "Directory created in home"
+	@if mkdir -p $(HOME)/new_directory; \
+		then \
+		echo "Directory created in home"; \
+		else \
+		echo "Failed to create directory in home"; \
+		exit 1; \
+	fi
 
 
 
