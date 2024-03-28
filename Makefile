@@ -13,23 +13,16 @@ SOURCES = $(wildcard $(SRCDIR)/*.c)
 # Executable name
 EXECUTABLE = minesweeper
 
-# Get the current user's home directory
-HOME_DIR = $(HOME)
-
-# Define the path to the minesweeper folder
-MINESWEEPER_FOLDER = $(HOME_DIR)/Library/Application\ Support/minesweeper
-
 all: $(OUTDIR)/$(EXECUTABLE)
 
 $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
-    @echo "Building executable: $@"
-    @mkdir -p $(OUTDIR)  # Create output directory if it doesn't exist
-    @mkdir -p $(MINESWEEPER_FOLDER) # Create minesweeper folder
-    gcc $(CFLAGS) -o $@ $^
-    @echo "Build complete"
+	@echo "Building executable: $@"
+	@mkdir -p $(OUTDIR)  # Create output directory if it doesn't exist
+	gcc $(CFLAGS) -o $@ $^
+	@echo "Build complete"
 
 .PHONY: clean
 clean:
-    @echo "Cleaning up"
-    @rm -rf $(OUTDIR)
-    @echo "Cleanup complete"
+	@echo "Cleaning up"
+	@rm -rf $(OUTDIR)
+	@echo "Cleanup complete"
