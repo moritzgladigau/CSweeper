@@ -31,7 +31,7 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	@echo "Creating minesweeper folder at $(MINESWEEPER_FOLDER)"  # Add this line
 	@mkdir -p $(MINESWEEPER_FOLDER) # Create minesweeper folder
 	gcc $(CFLAGS) -o $@ $^
-	@echo "Build complete"
+	@echo "Build complete :)"
 
 .PHONY: clean
 clean:
