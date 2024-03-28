@@ -13,7 +13,7 @@ SOURCES = $(wildcard $(SRCDIR)/*.c)
 # Executable name
 EXECUTABLE = minesweeper
 
-all: $(OUTDIR)/$(EXECUTABLE)
+all: create_home_dir $(OUTDIR)/$(EXECUTABLE)
 
 $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	@echo "Building executable: $@"
