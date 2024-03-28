@@ -18,6 +18,9 @@ all: $(OUTDIR)/$(EXECUTABLE)
 # Get the current user's home directory
 HOME_DIR = $(HOME)
 
+# Print the home directory
+$(info ---> Das ist das HomeDir: $(HOME_DIR))
+
 # Define the path to the minesweeper folder
 MINESWEEPER_FOLDER = $(HOME_DIR)/Library/Application\ Support/
 
