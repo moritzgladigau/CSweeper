@@ -22,7 +22,8 @@ class Minesweeper < Formula
     # Entfernen Sie das ausführbare Spiel
     rm bin/"minesweeper"
 
-    # Weitere Dateien oder Verzeichnisse entfernen, falls vorhanden
+    # Weitere Dateien oder Verzeichnisse entfernen, falls 
+vorhanden
     # Zum Beispiel Konfigurationsdateien, Datenverzeichnisse usw.
   end
 
