@@ -11,12 +11,6 @@ int check_if_file_exist(char *file_name)
 
 	if (file == NULL) {
 		printf(BOLD RED " '%s' existiert nicht!\n" RESET, file_name);
-		if (strcmp(FILE_NAME_SAVE, file_name) == 0) {
-			create_save_file();
-		}
-		if (strcmp(FILE_NAME_LOG, file_name) == 0) {
-			create_log_file();
-		}
 		return ERROR;
 	}
 
@@ -117,11 +111,14 @@ int create_log_file(void)
 	free(path);
 
 	if (file == NULL) {
+		printf(BOLD RED "Es konte keine %s file für Sie angelegt.\n" RESET, FILE_NAME_LOG);
 		return ERROR;
 	}
 
 	fprintf(file, "Log C-Minesweeper " VERSION "\t~\n");
 	fprintf(file, "Game-ID\tDay\tTime\tUsername\tGame-End\tDifficulty\tFieldsize\tMine-Perc\tPlaying-Time\tScore\t~\n");
+
+	printf(BOLD GREEN "Es wurde erfolgreich eine Log Datei Angelegt.\n");
 
 	fclose(file);
 	return SUCCESS;

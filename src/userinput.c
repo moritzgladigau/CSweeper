@@ -83,7 +83,7 @@ int handle_userinput(int width, int height, int curser[])
 	int i, j;
 	
 	if (k > '0' && k <= '9') {
-		j = k;
+		j = k - '0';
 		k = get_user_key();
 		for (i = 0; i < j; i++) {
 			if (k == move_key_up || k == move_key_down || k == move_key_left || k == move_key_right) {

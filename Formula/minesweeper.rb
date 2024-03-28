@@ -2,7 +2,7 @@ class Minesweeper < Formula
   desc "A Minesweeper game in C for the terminal"
   homepage "https://github.com/moritzgladigau/Minesweeper"
   url "https://github.com/moritzgladigau/Minesweeper/archive/refs/tags/v1.1.1-beta.tar.gz"
-  sha256 "815c1d2df5cb9844eb0359c91b2c41209ba9b8e4ca77bdca15606c17072f9177"
+  sha256 "4acebc0b55d014cea1f3bfd6f422ac3a68fd643463d995c00cd6423bd332d2ef"
   # sha256 :no_check
 
   depends_on "gcc" # Abhängigkeit von GCC

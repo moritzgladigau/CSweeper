@@ -26,11 +26,38 @@ int main (void)
 	time_t t_start, t_end;
 	double t_diff;
 
+	int file_exist = 0;
+
 	srand(time(NULL));
 
 	/* Funktionen Testen */ 	
-	check_if_file_exist(FILE_NAME_SAVE);
-	check_if_file_exist(FILE_NAME_LOG);
+	if (check_if_file_exist(FILE_NAME_SAVE) == ERROR) {
+		file_exist = 1;
+	}
+	if (check_if_file_exist(FILE_NAME_LOG) == ERROR) {
+		file_exist = (file_exist == 0) ? 2 : 3;
+	}
+
+	if (file_exist != 0) {
+		printf(BOLD UNDERLINE "Wollen Sie die die Genanten fiels erstellen? [" GREEN "y" RESET BOLD UNDERLINE "|" RED "n" RESET BOLD UNDERLINE "]\n" RESET);
+		if (get_user_key() == 'y') {
+			switch (file_exist) {
+				case 1:
+					create_save_file();
+					break;
+				case 2:
+					create_log_file();
+					break;
+				case 3:
+					create_save_file();
+					create_log_file();
+					break;
+				default:
+					break;
+			}
+		}
+		flush();
+	}
 
 	pic_minesweeper();
 
@@ -40,9 +67,6 @@ int main (void)
 			(strcmp(name, "user") != 0) ? free(name) : (void)0;
 			return 0;
 		}
-
-		create_save_file();
-
 
 		numb_of_mine = (width * height) * mine_perc / 100;
 
@@ -94,11 +118,15 @@ int main (void)
 
 		if (info == GAME_END) {
 			printf(BOLD RED "Du hast leider verloren :/\n" RESET);
-			update_log_file(width, height, mine_perc, t_diff, difficulty, name, "Lose", count_open);
+			if (check_if_file_exist(FILE_NAME_LOG) == SUCCESS) {
+				update_log_file(width, height, mine_perc, t_diff, difficulty, name, "Lose", count_open);
+			}
 		}
 		if (logic_check(width, height, a_field, c_field, numb_of_mine, count_open) == GAME_END) {
 			printf(BOLD CYAN "Du hast gewonnen :)\n");
-			update_log_file(width, height, mine_perc, t_diff, difficulty, name, "Win", count_open);
+			if (check_if_file_exist(FILE_NAME_LOG) == SUCCESS) {
+				update_log_file(width, height, mine_perc, t_diff, difficulty, name, "Win", count_open);
+			}
 		}
 		
 
