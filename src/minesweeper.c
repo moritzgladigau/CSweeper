@@ -4,8 +4,6 @@
 #include "design.h"
 #include "wtxt.h"
 
-#include <unistd.h> // Für chdir()
-#include <limits.h> // Füge diese Zeile hinzu
 
 #define ERROR 0
 #define SUCCESS 1
@@ -30,35 +28,9 @@ int main (void)
 
 	srand(time(NULL));
 
-
-printf("Das gehört hier nicht hin\n");
-
-char executable_path[PATH_MAX];
-    ssize_t len = readlink("/proc/self/exe", executable_path, sizeof(executable_path) - 1);
-    if (len != -1) {
-        executable_path[len] = '\0';
-        // Extrahiere das Verzeichnis aus dem vollen Pfad
-        char *last_slash = strrchr(executable_path, '/');
-        if (last_slash != NULL) {
-            *last_slash = '\0'; // Setze das Ende des Pfads
-            // Setze das Arbeitsverzeichnis auf das Verzeichnis des ausführbaren Programms
-            chdir(executable_path);
-        }
-    }
-
-
-
-
-
-
-
-
-
 	/* Funktionen Testen */ 	
 	check_if_file_exist(FILE_NAME_SAVE);
 	check_if_file_exist(FILE_NAME_LOG);
-    
-    printf("Das gehört hier nicht hin\n");
 
 	pic_minesweeper();
 
