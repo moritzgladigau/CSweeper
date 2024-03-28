@@ -15,16 +15,14 @@ EXECUTABLE = minesweeper
 
 all: $(OUTDIR)/$(EXECUTABLE)
 
-# Get the current user's home directory
-HOME := $(shell getent passwd $$USER | cut -d: -f6)
+# Get the current user's username
+USER := $(USER)
 
-
-# Print the home directory
-$(info ---> Das ist das HomeDir: $(HOME_DIR))
+# Print the username
+$(info ---> Das ist der Benutzername: $(USER))
 
 # Define the path to the minesweeper folder
-MINESWEEPER_FOLDER = $(HOME)/Library/Application\ Support/minesweeper
-
+MINESWEEPER_FOLDER = /Users/$(USER)/Library/Application\ Support/minesweeper
 
 $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	@echo "Building executable: $@"
