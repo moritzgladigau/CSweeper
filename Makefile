@@ -28,9 +28,7 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	@echo "Building executable: $@"
 	@mkdir -p $(OUTDIR)  # Create output directory if it doesn't exist
 	@echo "Creating minesweeper folder at $(MINESWEEPER_FOLDER)"  # Add this line
-	@sudo chmod 777 $(MINESWEEPER_FOLDER)  # Change permissions temporarily
-	@mkdir -p $(MINESWEEPER_FOLDER) # Create minesweeper folder
-	@sudo chmod 755 $(MINESWEEPER_FOLDER)  # Reset permissions
+	@install -d -m 755 $(MINESWEEPER_FOLDER) # Use install command to create minesweeper folder
 	gcc $(CFLAGS) -o $@ $^
 	@echo "Build complete :)"
 
