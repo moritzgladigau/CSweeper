@@ -16,7 +16,9 @@ EXECUTABLE = minesweeper
 all: $(OUTDIR)/$(EXECUTABLE)
 
 # Get the current user's home directory
-HOME_DIR = $(HOME)
+ifndef HOME
+HOME := $(shell echo $$HOME)
+endif
 
 # Print the home directory
 $(info ---> Das ist das HomeDir: $(HOME_DIR))
