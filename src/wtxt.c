@@ -175,17 +175,24 @@ char *get_from_file_table(char *file_name, int row, int col)
 }
 
 char *concatenate_path(const char *file_name) {
-    char *path = malloc(strlen(FILE_DIRECTORY) + strlen(file_name) + 1);
 
-    if (path == NULL) {
-        printf(BOLD RED "Speicherzuweisung fehlgeschlagen!\n" RESET);
-        return NULL;
-    }
+	/* INFO: C-89 Ausnahme */
+	const char *home_directory = getenv("HOME");
+	
+	char *path = malloc(strlen(home_directory) + strlen(FILE_DIRECTORY) + strlen(file_name) + 1);	
 
-    strcpy(path, FILE_DIRECTORY);
-    strcat(path, file_name);
+	if (home_directory == NULL) {
+	    	printf(BOLD RED "Home-Verzeichnis nicht gefunden!\n" RESET);
+	    	return NULL;
+	}
 
-    return path;
+	if (path == NULL) {
+		printf(BOLD RED "Speicherzuweisung fehlgeschlagen!\n" RESET);
+		return NULL;
+	}	
+	strcpy(path, FILE_DIRECTORY);
+	strcat(path, file_name);	
+	return path;
 }
 
 int get_max_row(char *file_name)

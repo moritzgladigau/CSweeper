@@ -4,10 +4,15 @@
 #include "design.h"
 #include <time.h>
 
+/* INFO: C-89 Ausnahme */
+#include <unistd.h>
+
+
+
 #define VERSION "v1.1.0-beta"
 
 /* Library/Application Support/minesweeper/ */
-#define FILE_DIRECTORY ""
+#define FILE_DIRECTORY "Library/Application Support/minesweeper/"
 #define FILE_NAME_SAVE "Config_v.1.1.0-beta.txt"
 #define FILE_NAME_LOG "game-log.txt"
 
