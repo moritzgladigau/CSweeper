@@ -2,7 +2,7 @@ class Minesweeper < Formula
   desc "A Minesweeper game in C for the terminal"
   homepage "https://github.com/moritzgladigau/Minesweeper"
   url "https://github.com/moritzgladigau/Minesweeper/archive/refs/tags/v1.1.1-beta.tar.gz"
-  sha256 "de9d89c4dafdf79a3cf67de79766031b04efadd9f8ce0cb584e39e7e36669154"
+  sha256 "92fea2d7b704a02c27e65aaf81616992e1fee8ab9394a66d2633837be1619699"
   # sha256 :no_check
 
   depends_on "gcc" # Abhängigkeit von GCC
@@ -17,8 +17,8 @@ class Minesweeper < Formula
     # Install the executable to the bin directory
     bin.install "bin/minesweeper"
 
-    # Create the minesweeper directory in the Application Support directory
-    (File.expand_path("~/Library/Application Support/minesweeper")).mkpath
+    # Create the minesweeper directory in the user's home directory
+    (Dir.home + "/Library/Application Support/minesweeper").mkpath
   end
 
   def uninstall
@@ -26,7 +26,7 @@ class Minesweeper < Formula
     rm bin/"minesweeper"
 
     # Remove the minesweeper directory
-    rm_rf File.expand_path("~/Library/Application Support/minesweeper")
+    rm_rf Dir.home + "/Library/Application Support/minesweeper"
 
     # Weitere Dateien oder Verzeichnisse entfernen, falls 
 vorhanden
