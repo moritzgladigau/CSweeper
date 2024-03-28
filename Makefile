@@ -16,15 +16,14 @@ EXECUTABLE = minesweeper
 all: $(OUTDIR)/$(EXECUTABLE)
 
 # Get the current user's home directory
-ifndef HOME
-HOME := $(shell echo $$HOME)
-endif
+HOME := $(shell getent passwd $$USER | cut -d: -f6)
+
 
 # Print the home directory
 $(info ---> Das ist das HomeDir: $(HOME_DIR))
 
 # Define the path to the minesweeper folder
-MINESWEEPER_FOLDER = $(HOME_DIR)/Library/Application\ Support/
+MINESWEEPER_FOLDER = $(HOME)/Library/Application\ Support/minesweeper
 
 
 $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
