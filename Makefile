@@ -15,20 +15,10 @@ EXECUTABLE = minesweeper
 
 all: $(OUTDIR)/$(EXECUTABLE)
 
-# Get the current user's username
-USER := $(USER)
-
-# Print the username
-$(info ---> Das ist der Benutzername: $(USER))
-
-# Define the path to the minesweeper folder
-MINESWEEPER_FOLDER = /Users/$(USER)/Library/Application\ Support/minesweeper
-
 $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	@echo "Building executable: $@"
 	@mkdir -p $(OUTDIR)  # Create output directory if it doesn't exist
 	@echo "Creating minesweeper folder at $(MINESWEEPER_FOLDER)"  # Add this line
-	@install -d -m 755 $(MINESWEEPER_FOLDER) # Use install command to create minesweeper folder
 	gcc $(CFLAGS) -o $@ $^
 	@echo "Build complete :)"
 

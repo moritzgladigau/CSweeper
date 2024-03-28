@@ -16,14 +16,17 @@ class Minesweeper < Formula
 
     # Install the executable to the bin directory
     bin.install "bin/minesweeper"
+
+    # Create the minesweeper directory in the Application Support directory
+    (File.expand_path("~/Library/Application Support/minesweeper")).mkpath
   end
 
   def uninstall
     # Entfernen Sie das ausführbare Spiel
     rm bin/"minesweeper"
 
-    # Entfernen Sie das Datenverzeichnis, falls vorhanden
-    rm_rf "#{ENV['HOME']}/Library/Application Support/minesweeper"
+    # Remove the minesweeper directory
+    rm_rf File.expand_path("~/Library/Application Support/minesweeper")
 
     # Weitere Dateien oder Verzeichnisse entfernen, falls 
 vorhanden
