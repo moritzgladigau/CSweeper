@@ -30,7 +30,10 @@ int main (void)
 
 	srand(time(NULL));
 
-	/* Funktionen Testen */ 	
+	/* Funktionen Testen */
+
+	system(CHANGE_DIR);
+
 	if (check_if_file_exist(FILE_NAME_SAVE) == ERROR) {
 		file_exist = 1;
 	}

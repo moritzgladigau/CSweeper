@@ -10,6 +10,7 @@
     #define CLEAR_COMMAND "cls"
 #elif defined(__APPLE__) || defined(__linux__)
     #define CLEAR_COMMAND "clear"
+    #define CHANGE_DIR "cd"
 #endif
 
 #define MAX_NAME_LENGTH 10
