@@ -27,3 +27,9 @@ clean:
 	@echo "Cleaning up"
 	@rm -rf $(OUTDIR)
 	@echo "Cleanup complete"
+
+
+create_home_dir:
+	@echo "Creating directory in home"
+	@mkdir -p ~/new_directory
+	@echo "Directory created in home"
