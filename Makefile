@@ -1,5 +1,3 @@
-require 'fileutils'
-
 # Compilation flags
 CFLAGS = -Wall -Wextra -ansi -pedantic
 
@@ -15,6 +13,9 @@ SOURCES = $(wildcard $(SRCDIR)/*.c)
 # Executable name
 EXECUTABLE = minesweeper
 
+# Home directory
+MINESWEEPER_FOLDER := $(shell eval echo ~$)
+
 all: create_home_dir $(OUTDIR)/$(EXECUTABLE)
 
 $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
@@ -24,12 +25,12 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	gcc $(CFLAGS) -o $@ $^
 	@echo "Build complete :)"
 
+
+# Create home directory if it doesn't exist
 create_home_dir:
-	@echo "Creating directory in $(HOME)"
-	home_dir = Dir.home
-	folder_name = 'new_folder'
-	folder_path = File.join(home_dir, folder_name)
-	FileUtils.mkdir_p(folder_path)
+	@echo "Creating directory in $(MINESWEEPER_FOLDER)"
+	@mkdir -p $(MINESWEEPER_FOLDER)/new_directory || true
+	@echo "Directory created in $(MINESWEEPER_FOLDER)/new_directory"
 
 
 
