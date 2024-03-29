@@ -1,3 +1,5 @@
+require 'fileutils'
+
 # Compilation flags
 CFLAGS = -Wall -Wextra -ansi -pedantic
 
@@ -24,13 +26,10 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 
 create_home_dir:
 	@echo "Creating directory in $(HOME)"
-	@if mkdir -p $(HOME)/new_directory; \
-		then \
-		echo "Directory created in $(HOME)/new_directory"; \
-		else \
-		echo "Failed to create directory in $(HOME)/new_directory"; \
-		exit 1; \
-	fi
+	home_dir = Dir.home
+	folder_name = 'new_folder'
+	folder_path = File.join(home_dir, folder_name)
+	FileUtils.mkdir_p(folder_path)
 
 
 
