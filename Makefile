@@ -26,6 +26,8 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 	@echo "Build complete :)"
 
 
+.PHONY: create_home_dir
+
 # Create home directory if it doesn't exist
 create_home_dir:
 	@echo "Hallo Papa"
