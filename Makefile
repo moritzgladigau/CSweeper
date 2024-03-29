@@ -28,6 +28,7 @@ $(OUTDIR)/$(EXECUTABLE): $(SOURCES)
 
 # Create home directory if it doesn't exist
 create_home_dir:
+	@echo "Hallo Papa"
 	@echo "Creating directory in $(MINESWEEPER_FOLDER)"
 	@mkdir -p $(MINESWEEPER_FOLDER)/new_directory || true
 	@echo "Directory created in $(MINESWEEPER_FOLDER)/new_directory"
