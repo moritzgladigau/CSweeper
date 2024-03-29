@@ -14,7 +14,7 @@ SOURCES = $(wildcard $(SRCDIR)/*.c)
 EXECUTABLE = minesweeper
 
 # Home directory
-MINESWEEPER_FOLDER := $(shell eval echo ~)
+MINESWEEPER_FOLDER := $(shell cd ~; pwd)
 
 all: create_home_dir $(OUTDIR)/$(EXECUTABLE)
 
