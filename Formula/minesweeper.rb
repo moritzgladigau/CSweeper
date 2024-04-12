@@ -4,7 +4,7 @@ class Minesweeper < Formula
   desc "A Minesweeper game in C for the terminal"
   homepage "https://github.com/moritzgladigau/Minesweeper"
   url "https://github.com/moritzgladigau/Minesweeper/archive/refs/tags/v1.1.1-beta.tar.gz"
-  sha256 "59917a08a21932ec127d20bd3e57f05f31d64382fd73deb091ca47fc9ad949fc"
+  sha256 "db080ae903de52c3d3d8f148c75ab5bc0f5b4cb167ee4bf285820bf28c5ec7e7"
   # sha256 :no_check
 
   depends_on "gcc" # Abhängigkeit von GCC
@@ -17,7 +17,6 @@ class Minesweeper < Formula
     home_directory = "/Users/#{username}"
     puts "Home directory: #{home_directory}"
     system "sudo mkdir #{home_directory}/.game"
-    system "sudo chown -R #{username} #{home_directory}/.game"
 
     # Build the executable
     system "make"
