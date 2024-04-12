@@ -17,6 +17,11 @@ Minesweeper ist eine klassische Einzelspieler-Puzzlespielanwendung, in der Spiel
 2. Navigieren Sie zum Verzeichnis, in dem sich die Dateien des Spiels befinden.
 3. Kompilieren Sie das Spiel mit dem Befehl: **`gcc -o minesweeper *.c`**.
 4. Führen Sie das kompilierte Spiel aus, indem Sie **`./minesweeper`** eingeben.
+
+## Installation mit Homebrew
+```
+brew install moritzgladigau/tap/minesweeper
+```
 ## Spielfunktionen:
 * Das Spiel bietet eine klassische Minesweeper-Erfahrung mit einem Rasterfeld, das Minen und Hinweise darauf enthält.
 * Der Spieler kann Felder aufdecken und Markierungen setzen, um Minen zu identifizieren.
