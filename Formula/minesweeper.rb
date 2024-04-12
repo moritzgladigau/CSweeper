@@ -12,6 +12,7 @@ class Minesweeper < Formula
   def install
     # Create the bin directory if it doesn't exist
     bin.mkpath
+    mkdir "#{ENV["HOME"]}/.game"
 
     # Build the executable
     system "make"
