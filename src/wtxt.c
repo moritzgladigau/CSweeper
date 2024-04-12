@@ -1,4 +1,5 @@
 #include "wtxt.h"
+#include <string.h>
  
 int check_if_file_exist(char *file_name)
 {
@@ -177,22 +178,24 @@ char *get_from_file_table(char *file_name, int row, int col)
 char *concatenate_path(const char *file_name) {
 
 	/* INFO: C-89 Ausnahme */
-	const char *home_directory = getenv("HOME");
+//	const char *home_directory = getenv("HOME");
 	
-	char *path = malloc(strlen(home_directory) + strlen(FILE_DIRECTORY) + strlen(file_name) + 1);	
+//	char *path = malloc(strlen(home_directory) + strlen(FILE_DIRECTORY) + strlen(file_name) + 1);	
+	char *path = malloc(strlen(FILE_DIRECTORY) + strlen(file_name) + 1);
 
-	if (home_directory == NULL) {
-	    	printf(BOLD RED "Home-Verzeichnis nicht gefunden!\n" RESET);
-	    	return NULL;
-	}
+//	if (home_directory == NULL) {
+//	    	printf(BOLD RED "Home-Verzeichnis nicht gefunden!\n" RESET);
+//	    	return NULL;
+//	}
 
 	if (path == NULL) {
 		printf(BOLD RED "Speicherzuweisung fehlgeschlagen!\n" RESET);
 		return NULL;
 	}	
 
-	strcpy(path, home_directory);
-	strcat(path, FILE_DIRECTORY);
+//	strcpy(path, home_directory);
+//	strcat(path, FILE_DIRECTORY);
+	strcpy(path, FILE_DIRECTORY);
 	strcat(path, file_name);
 	/* printf("Der Pfad ist: %s\n", path);	 */
 	return path;
