@@ -4,7 +4,7 @@ class Minesweeper < Formula
   desc "A Minesweeper game in C for the terminal"
   homepage "https://github.com/moritzgladigau/Minesweeper"
   url "https://github.com/moritzgladigau/Minesweeper/archive/refs/tags/v1.1.1-beta.tar.gz"
-  sha256 "4e6ca0106ead6c6d0a19c3f72cb82507bc35994d314788ae97891345ce0a05d5"
+  sha256 "4ad941acdb0ad820523fda603ca1b8e35c3df3c7cca060f451f690c42d4a3e9a"
   # sha256 :no_check
 
   depends_on "gcc" # Abhängigkeit von GCC
@@ -13,7 +13,7 @@ class Minesweeper < Formula
     # Create the bin directory if it doesn't exist
     bin.mkpath
     puts "Creating directory ~/.game"
-    home_directory = File.expand_path("~")
+    home_directory = ENV["HOME"]
     puts "Home directory: #{home_directory}"
     mkdir "#{home_directory}/.game"
 
