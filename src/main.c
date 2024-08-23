@@ -5,7 +5,11 @@
 #include "userinput.h"
 
 #include "text.h"
-typedef void (*TextFunction)();
+
+void (*text1_func)();
+void (*text2_func)();
+void (*text3_func)(int row, int col, float mine_percentage, int level);
+void (*text4_func)(int item);
 
 int main(void) {
 	// Chose a Language
@@ -22,21 +26,27 @@ int main(void) {
 		}
 	} while( language_result == 0 || language < 1 || language > 2);
 
-
-	TextFunction text1_func, text2_func, text3_func;
-
 	if (language == 1) {
 		// Englisch
 		text1_func = text1_en; // Weist die Funktionen zu
+		text2_func = text2_en;
+		text3_func = text3_en;
+		text4_func = text4_en;
 	} else {
 		// Deutsch (Standard)
 		text1_func = text1_de; // Weist die Funktionen zu
+		text2_func = text2_de;
+		text3_func = text3_de;
+		text4_func = text4_de;
+
 	}
 	text1_func(); 
+	flush();
 
 	// Start values for the game
 	int row = 30;
 	int col = 60;
+	float mine_percentage = 16.7;
 
 	int x_curser = 0;
 	int y_curser = 0;
@@ -44,12 +54,21 @@ int main(void) {
 	int** matrix1;
 	int** matrix2;
 
+	int level;
+
 	// initials a random time used to fill our game 
 	srand(time(NULL));
 
+	// Start of the visible program 
+	// Menu and User inputs
+	level = print_level_menu(&row,&col, &mine_percentage); 
+	text3_func(row, col, mine_percentage, level);
+	
+	
+
 	// initialise the matrix that we will use as reverence for the active game
 	createMatrix(&matrix1, row, col);
-	logic_fill_matrix(matrix1, row, col, 16.7);
+	logic_fill_matrix(matrix1, row, col, mine_percentage);
 
 	desing_print_matrix(matrix1, row, col, x_curser, y_curser);
 	

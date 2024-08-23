@@ -2,6 +2,7 @@
 #define DESING_H
 
 #include <stdio.h>
+#include "globals.h"
 
 /* ANSI Escape Codes for text color */
 #define CYAN    "\x1B[36m"
@@ -22,6 +23,8 @@
 
 void desing_print_matrix(int **matrix, int rows, int cols, int x_cursor, int y_cursor);
 void get_ascii_to_print(int value); 
+
+int print_level_menu(int *row, int *col, float *mine_percentage); 
 
 
 #endif

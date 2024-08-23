@@ -1,4 +1,5 @@
 #include "desing.h"
+#include "userinput.h"
 #include <stdio.h>
 
 // Print the Game field and shows the cursor on the Field
@@ -66,5 +67,59 @@ void get_ascii_to_print(int value) {
 	}
 }
 
+// Ask wich level (Simpel to Hard) you want to play returns the number of the level
+int print_level_menu(int *row, int *col, float *mine_percentage) {
+	int choice; 
+	int puffer;
+	
+	text2_func();
+	do {
+		printf("=> ");
+		choice = userinput_get_number();
+		if (choice == 0) {
+			printf(RED "FLUSH" RESET);
+			flush();
+		}
+	}while(choice < 1 || choice > 4);
+
+	switch (choice) {
+		case 1:
+			*row = 8;
+			*col = 8;
+			*mine_percentage = 15.6;
+			break;
+		case 2:
+			*row = 16;
+			*col = 16;
+			*mine_percentage = 15.6;
+			break;
+		case 3:
+			*row = 30;
+			*col = 16;
+			*mine_percentage = 20.6;
+			break;
+		case 4:
+			do {
+				text4_func(1);
+				puffer = scanf("%i", row);
+				flush();
+			} while (puffer == 0);
+
+			do {
+				text4_func(2);
+				puffer = scanf("%i", col);
+				flush();
+			} while (puffer == 0);
+
+			do {
+				text4_func(3);
+				puffer = scanf("%f", mine_percentage);
+				flush();
+			} while (puffer == 0);
+			break;
+	}
+	return choice;
+}	
+	
 
 
