@@ -386,7 +386,7 @@ char *difficulty_to_char(int difficulty)
 		case 4:
 			return "User-Define";
 		default:
-            		return "Unknown";
+            return "Unknown";
 	}
 }
 

@@ -177,24 +177,14 @@ char *get_from_file_table(char *file_name, int row, int col)
 
 char *concatenate_path(const char *file_name) {
 
-	/* INFO: C-89 Ausnahme */
-//	const char *home_directory = getenv("HOME");
 	
-//	char *path = malloc(strlen(home_directory) + strlen(FILE_DIRECTORY) + strlen(file_name) + 1);	
 	char *path = malloc(strlen(FILE_DIRECTORY) + strlen(file_name) + 1);
-
-//	if (home_directory == NULL) {
-//	    	printf(BOLD RED "Home-Verzeichnis nicht gefunden!\n" RESET);
-//	    	return NULL;
-//	}
 
 	if (path == NULL) {
 		printf(BOLD RED "Speicherzuweisung fehlgeschlagen!\n" RESET);
 		return NULL;
 	}	
 
-//	strcpy(path, home_directory);
-//	strcat(path, FILE_DIRECTORY);
 	strcpy(path, FILE_DIRECTORY);
 	strcat(path, file_name);
 	/* printf("Der Pfad ist: %s\n", path);	 */
@@ -294,7 +284,7 @@ int calculate_score(int fieldsize, double mine_perc, double play_time, int open_
 	double g4 = 0.2;
 	double g5 = 0.15;
 
-	end = (strcmp(game_end, "Win") == 0) ? 1.0 : 0.5;
+	end = (strcmp(game_end, "Win") == 0) ? 1.0 : 0.0;
 
 	score = g1 * end + g2 * fieldsize + g3 * mine_perc + g4 * 1 / play_time + g5 * open_fields; 
 	return score;

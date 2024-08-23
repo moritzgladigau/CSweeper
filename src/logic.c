@@ -134,6 +134,7 @@ int logic_open_surounding(int width, int height, char **afield, char **cfield, i
     	}
 
 	if (afield[x][y] == '-') {
+			printf(YELLOW BOLD "Geoefnet wird: %i x %i\n" RESET, x, y);
         	afield[x][y] = cfield[x][y];
         	count++; 
     	}

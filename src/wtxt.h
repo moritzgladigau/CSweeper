@@ -4,10 +4,6 @@
 #include "design.h"
 #include <time.h>
 
-/* INFO: C-89-Stdlib Ausnahme */
-#include <unistd.h>
-
-
 #define VERSION "v1.1.0-beta"
 #define FILE_DIRECTORY "/opt/homebrew/var/minesweeper/"
 #define FILE_NAME_SAVE "Config_v.1.1.0-beta.txt"

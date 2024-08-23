@@ -91,11 +91,15 @@ int main (void)
 		}
 		logic_fill_c(width, height, c_field, numb_of_mine);
 
+		// printf(BOLD CYAN "Loesungsfeld\n" RESET);
+		// design_print_field(width, height, curser, c_field);
+
 		time(&t_start);
 
 		while (input != QUIT && info != GAME_END && logic_check(width, height, a_field, c_field, numb_of_mine, count_open) != GAME_END) {
-			clear();	
+			// clear();	
 
+			printf(BOLD RED "Du bist in einer Test Umgebung!!\n" RESET);
 			printf("%s\tMapsize: %ix%i\tMine_Perc: %0.1f\t\tName: %s\n", difficulty_to_char(difficulty), width, height, mine_perc, name);
 			printf("Open: %i/%i\t", count_open, (width * height - numb_of_mine));
 			printf("Flag: %i/%i\t\t", count_flag, numb_of_mine);
@@ -107,6 +111,9 @@ int main (void)
 			info_texte(info);
 			input = handle_userinput(width, height, curser);
 			info = logic_key_aktion(width, height, input, curser, a_field, c_field, &count_open, &count_flag, numb_of_mine); 
+			
+			printf(YELLOW BOLD "Curser ist an: %i x %i\n" RESET, curser[1], curser[0]);
+
 			flush();
 
 			time(&t_end);
