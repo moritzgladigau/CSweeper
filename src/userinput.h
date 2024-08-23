@@ -1,47 +1,32 @@
 #ifndef USERINPUT_H
 #define USERINPUT_H
 
+
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "design.h"
+#include <ctype.h>
+#include <stdio.h>
 
-#if defined(_WIN32)
-    #define CLEAR_COMMAND "cls"
-#elif defined(__APPLE__) || defined(__linux__)
-    #define CLEAR_COMMAND "clear"
-    #define CHANGE_DIR "cd"
-#endif
+#define KEY_ARROW_UP 183
+#define KEY_ARROW_DOWN 184
+#define KEY_ARROW_LEFT 186
+#define KEY_ARROW_RIGHT 185
+#define KEY_F1 186
+#define KEY_F2 187
+#define KEY_F3 188
+#define KEY_F4 189
+#define KEY_F5 346
+#define KEY_F6 348
+#define KEY_F7 349
+#define KEY_F8 350
+#define KEY_F9 342
+#define KEY_F10 343
+#define KEY_F12 346
 
-#define MAX_NAME_LENGTH 10
 
-/* Define Key */
-#define ARROW_KEY_UP 183
-#define ARROW_KEY_DOWN 184
-#define ARROW_KEY_LEFT 186
-#define ARROW_KEY_RIGHT 185
+void flush(); 
+int userinput_get_input(); 
+int userinput_get_number(); 
 
-#define OPEN -1
-#define FLAG 'f'
-#define QUIT -3
-#define ERROR 0
-#define SUCCESS 1
 
-extern int move_key_up;
-extern int move_key_down;
-extern int move_key_left;
-extern int move_key_right;
-extern int help_key;
-extern int open_key;
-extern int flag_key;
-extern int quit_key;
 
-void clear(void);
-void flush(void);
-int get_user_numb(int length);
-char *get_user_name(int length);
-int get_user_key(void);
-
-int handle_userinput(int width, int height, int curser[]);
-void curser_move(int width, int height, int curser[], int key);
 #endif

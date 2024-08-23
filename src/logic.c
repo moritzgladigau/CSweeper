@@ -1,168 +1,64 @@
 #include "logic.h"
+#include <stdio.h>
 
-char **logic_field_init(int width, int height)
-{
-	int i, j;
-	char **field = calloc(width, sizeof(char*));
-	if (field == NULL) {
-		printf(BOLD RED "Feheler beim Allocieren der Breite des Feldes\n" RESET);
-		free(field);
-		return NULL;
-	}
-
-	for (i = 0; i < width; i++) {
-		field[i] = calloc(height, sizeof(char));
-		if (field[i] == NULL) {
-			printf(BOLD RED "Feheler beim Allocieren der Hoehe des Feldes\n" RESET);
-			for (j = 0; j < i; j++) {
-				free(field[j]);
-			}
-			free(field);
-			return NULL;
-		}
-	}
-	return field;
+// Set up a Matrix for a Minesweeper Game by Setting MINES and the Visibility of them from another field.
+// Don't forget to write: srand(time(NULL)); in your main for a randomised Matrix.
+void logic_fill_matrix(int **matrix, int rows, int cols, float mine_percentage) {
+	logic_set_mines(matrix, rows, cols, mine_percentage);
+	logic_set_numbers(matrix, rows, cols);
 }
+	
+// Set at random Places in a Matrix the value for a MINE
+// Don't forget to write: srand(time(NULL)); in your main for a randomised Matrix.
+void logic_set_mines(int **matrix, int rows, int cols, float mine_percentage) {
+	int col_value, row_value;
+	int number_of_mines = rows * cols * mine_percentage / 100;
 
-void logic_field_colaps(int width, char **field)
-{
-	int i;
-	for (i = 0; i < width; i++) {
-		free(field[i]);
-	}
-	free(field);
-}
-
-void logic_fill_a(int width, int height, char **field)
-{
-	int i, j;
-	for (i = 0; i < width; i++) {
-		for (j = 0; j < height; j++) {
-			field[j][i] = '-';
-		}
-	}
-}
-
-void logic_fill_c(int width, int height, char **field, int numb_of_mine)
-{
-	logic_place_mine(width, height, field, numb_of_mine);
-	logic_place_numb(width, height, field);
-}
-
-void logic_place_mine(int width, int height, char **field, int numb_of_mine)
-{
-	int x, y;
 	do{
-		x = rand() % width;
-		y = rand() % height;
-		if (field[x][y] != MINE) {
-			field[x][y] = MINE;
-			numb_of_mine--;
+		col_value = rand() % cols;
+		row_value = rand() % rows;
+		
+		if(matrix[row_value][col_value] != MINE) {
+			matrix[row_value][col_value] = MINE;
+			number_of_mines--;
 		}
-	} while(numb_of_mine != 0);
-
+	}while(number_of_mines != 0);
 }
 
-void logic_place_numb(int width, int height, char **field)
-{
-	int i, j;
-	for (i = 0; i < width; i++) {
-		for (j = 0; j < height; j++) {
-			if (field[i][j] != MINE) {
-				field[i][j] = logic_count_surounding_bombs(width, height, field, i, j) + '0';
+// Sets in a Matrix field the number of surrounding MINES count by the Funktion logic_count_surrounding_mine
+void logic_set_numbers(int **matrix, int rows, int cols) {
+	int count, row_pos, col_pos; 
+
+	for(int i = 0; i < rows; i++) {
+		for(int j = 0; j < cols; j++) {
+			if(matrix[i][j] != MINE) {
+				matrix[i][j] = logic_count_surounding_mine(matrix, rows, cols, j, i);
 			}
 		}
 	}
+
 }
 
-int logic_count_surounding_bombs(int width, int height, char**field, int x, int y)
-{
-	int i, cx, cy, count = 0;
-	int dx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
-	int dy[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+// Count how many MINES a field in a Matrix can see (min. 0 - max. 8) 
+int logic_count_surounding_mine(int **matrix, int rows, int cols, int x, int y) {
+	int count=0, cx, cy;
 
-	for (i = 0; i < 8; i++) {
+	int dx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+	int dy[] = {-1, -1, -1, 0 , 0, 1, 1, 1};
+
+	for (int i = 0; i < 8; i++) {
 		cx = x + dx[i];
 		cy = y + dy[i];
-		if (cx >= 0 && cx < width && cy >= 0 && cy < height) {
-			if (field[cx][cy] == MINE) {
-				count++;
-			}
+
+		if(cx < cols && cx >= 0 && cy < rows && cy >= 0) {
+			count = count + ((matrix[cy][cx] == MINE) ? 1 : 0);
 		}
 	}
 	return count;
 }
 
+int logic_key_aktion() {
+	int i;
+	return i;
 
-int logic_key_aktion(int width, int height, int input, int curser[], char **afield, char **cfield, int *count_open, int *count_flag, int numb_of_mine)
-{
-	int x = curser[1];
-	int y = curser[0];
-
-	switch (input) {
-		case OPEN:
-			if (afield[x][y] != FLAG) {
-				(*count_open) += logic_open_surounding(width, height, afield, cfield, x, y);
-				if (cfield[x][y] == MINE) {
-					return GAME_END;
-				}
-			} else {
-				return ERROR_IS_FLAG;
-			}
-			break;
-		case FLAG:
-			if (afield[x][y] == '-' || afield[x][y] == 'f') {
-				if (afield[x][y] != FLAG && (*count_flag) < numb_of_mine) {
-					afield[x][y] = 'f';
-					(*count_flag)++;
-				} else if (afield[x][y] == FLAG) {
-					afield[x][y] = '-';
-					(*count_flag)--;
-				}
-			} else {
-				return ERROR_IS_OPEN;
-			}
-	}
-	return SUCCESS;
-}
-
-int logic_open_surounding(int width, int height, char **afield, char **cfield, int x, int y)
-{
-	int count = 0;
-	if (x < 0 || x >= height || y < 0 || y >= width || afield[x][y] == '0') {
-        	return count;
-    	}
-
-	if (afield[x][y] == '-') {
-			printf(YELLOW BOLD "Geoefnet wird: %i x %i\n" RESET, x, y);
-        	afield[x][y] = cfield[x][y];
-        	count++; 
-    	}
-
-	if (afield[x][y] == '0') {
-		count += logic_open_surounding(width, height, afield, cfield, x - 1, y - 1);
-		count += logic_open_surounding(width, height, afield, cfield, x - 0, y - 1);
-		count += logic_open_surounding(width, height, afield, cfield, x + 1, y - 1);
-		count += logic_open_surounding(width, height, afield, cfield, x - 1, y - 0);
-		count += logic_open_surounding(width, height, afield, cfield, x + 1, y - 0);
-		count += logic_open_surounding(width, height, afield, cfield, x - 1, y + 1);
-		count += logic_open_surounding(width, height, afield, cfield, x - 0, y + 1);
-		count += logic_open_surounding(width, height, afield, cfield, x + 1, y + 1);
-	}
-	return count;
-}
-		
-int logic_check(int width, int height, char **afield, char **cfield, int cmine, int copen)
-{
-	int i, j;
-	if (copen >= (width * height - cmine) * 90 / 100) {
-		for (i = 0; i < width; i++) {
-			for (j = 0; j < height; j++) {
-				if (afield[i][j] == FLAG && cfield[i][j] == MINE) {
-					cmine--;
-				}
-			}
-		}
-	}
-	return (cmine == 0) ? GAME_END : ERROR;
 }
