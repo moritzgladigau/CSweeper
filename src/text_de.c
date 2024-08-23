@@ -4,5 +4,5 @@
 // Hier werden alle Texte auf Deutsch geschrieben.
 
 void text1_de() {
-	printf("Hallo Welt");
+	printf("Hallo Welt\n");
 }

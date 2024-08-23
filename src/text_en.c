@@ -4,5 +4,5 @@
 // Here all Texts are in Englisch.
 
 void text1_en() {
-	printf("Hello World");
+	printf("Hello World\n");
 }
