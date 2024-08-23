@@ -3,3 +3,4 @@ Minesweeper
 *.swp
 .DS_Store
 *.txt
+src/main
