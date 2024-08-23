@@ -1,5 +1,4 @@
 #include "logic.h"
-#include <stdio.h>
 
 // Set up a Matrix for a Minesweeper Game by Setting MINES and the Visibility of them from another field.
 // Don't forget to write: srand(time(NULL)); in your main for a randomised Matrix.
@@ -12,7 +11,7 @@ void logic_fill_matrix(int **matrix, int rows, int cols, float mine_percentage) 
 // Don't forget to write: srand(time(NULL)); in your main for a randomised Matrix.
 void logic_set_mines(int **matrix, int rows, int cols, float mine_percentage) {
 	int col_value, row_value;
-	int number_of_mines = rows * cols * mine_percentage / 100;
+	int number_of_mines = ceil(rows * cols * mine_percentage / 100);
 
 	do{
 		col_value = rand() % cols;
