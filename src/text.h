@@ -22,11 +22,13 @@ void text1_de();
 void text2_de();
 void text3_de(int row, int col, float mine_percentage, int level); 
 void text4_de(int item); 
+void text5_de();
 
 // The Englisch Text
 void text1_en();
 void text2_en();
 void text3_en(int row, int col, float mine_percentage, int level); 
 void text4_en(int item); 
+void text5_en();
 
 #endif // TEXT_H

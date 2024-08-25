@@ -46,3 +46,7 @@ void text4_en(int item) {
             break;
     }
 }
+
+void text5_en() {
+    printf("Your input: ");
+}

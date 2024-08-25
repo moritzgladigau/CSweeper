@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include <stdio.h>
+#include <string.h>
 
 #define KEY_ARROW_UP 183
 #define KEY_ARROW_DOWN 184
@@ -25,7 +25,8 @@
 
 void flush(); 
 int userinput_get_input(); 
-int userinput_get_number(); 
+int userinput_get_number(int c); 
+int userinput(char str[], int search); 
 
 
 

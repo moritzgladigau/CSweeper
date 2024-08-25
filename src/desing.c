@@ -75,12 +75,13 @@ int print_level_menu(int *row, int *col, float *mine_percentage) {
 	text2_func();
 	do {
 		printf("=> ");
-		choice = userinput_get_number();
+		scanf("%i", &choice);	
 		if (choice == 0) {
 			printf(RED "FLUSH" RESET);
 			flush();
 		}
 	}while(choice < 1 || choice > 4);
+	flush();
 
 	switch (choice) {
 		case 1:

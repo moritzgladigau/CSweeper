@@ -47,3 +47,7 @@ void text4_de(int item) {
 			break;
 	}
 }
+
+void text5_de() {
+	printf("Deine Eingabe: ");
+}

@@ -1,4 +1,5 @@
 #include "logic.h"
+#include "userinput.h"
 
 // Set up a Matrix for a Minesweeper Game by Setting MINES and the Visibility of them from another field.
 // Don't forget to write: srand(time(NULL)); in your main for a randomised Matrix.
@@ -56,8 +57,24 @@ int logic_count_surounding_mine(int **matrix, int rows, int cols, int x, int y) 
 	return count;
 }
 
-int logic_key_aktion() {
-	int i;
-	return i;
+// Move the Cursor
+int logic_key_aktion(int rows, int cols, int key, int *x_cursor, int *y_cursor) {
+	if (key == KEY_ARROW_DOWN || key == KEY_ARROW_UP || key == KEY_ARROW_LEFT || key == KEY_ARROW_RIGHT) {
+		switch (key) {
+			case KEY_ARROW_UP:
+				*y_cursor = ((*y_cursor) - 1 > 0) ? (*y_cursor) - 1 : rows - 1;
+				break;
+			case KEY_ARROW_DOWN:
+				*y_cursor = ((*y_cursor) + 1 < rows) ? (*y_cursor) + 1 : 0;
+				break;
+			case KEY_ARROW_LEFT:
+				*x_cursor = ((*x_cursor) - 1 > 0) ? (*x_cursor) - 1 : cols - 1;
+				break;
+			case KEY_ARROW_RIGHT:
+				*x_cursor = ((*x_cursor) + 1 < cols) ? (*x_cursor) + 1 : 0;
+				break;
+		}
+	}
+	return 1;
 
 }
