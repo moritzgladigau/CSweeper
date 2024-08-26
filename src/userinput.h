@@ -24,8 +24,6 @@
 
 
 void flush(); 
-int userinput_get_input(); 
-int userinput_get_number(int c); 
 int userinput(char str[], int search); 
 
 
