@@ -3,66 +3,88 @@
 #include <stdio.h>
 
 // Print the Game field and shows the cursor on the Field
-void desing_print_matrix(int **matrix, int rows, int cols, int x_cursor, int y_cursor) {
+// Return the Number of fields that are visual or -1 if an Mine is Open
+int desing_print_matrix(int **matrix, int rows, int cols, int x_cursor, int y_cursor) {
+	int count = 0, value;
 	for(int i = 0; i < rows; i++) {
 		for(int j = 0; j < cols; j++) {
 			if(i == y_cursor && j == x_cursor) {
 				printf("[");
-				get_ascii_to_print(matrix[i][j]); 
+				value = get_ascii_to_print(matrix[i][j]); 
 				printf("]");
 			} else {
 				printf(" ");
-				get_ascii_to_print(matrix[i][j]);
+				value = get_ascii_to_print(matrix[i][j]);
 				printf(" ");
 			}
+			if (value == 0 && count != -1) {
+				count++;
+			} else if (value == -1) {
+				count = -1;
+			}
+
 		}
 		printf("\n");
 	}
+	return count;
 }
 
 
-// TODO: Return Value idea: CONTINUE if value -1->8, FLAG if value -2, BOMB if value 9
+// Return Value 0 for all numbers 0 - 8, 1 for Flag or not open fields, -1 for a Mine 
 // I can use the return value to count recode if a bomb is Open (Game Over) 
-void get_ascii_to_print(int value) {
+int get_ascii_to_print(int value) {
 	switch (value) {
 		case -2:
 			printf("F");
+			return 1;
 			break;
 		case -1:
 			printf("-");
+			return 1;
 			break;
 		case 0:
 			printf(" ");
+			return 0;
 			break;
 		case 1:
 			printf(BLUE "1" RESET);
+			return 0;
 			break;
 		case 2:
 			printf(GREEN "2" RESET);
+			return 0;
 			break;
 		case 3:
 			printf(RED "3" RESET);
+			return 0;
 			break;
 		case 4:
 			printf(DARK_BLUE "4" RESET);
+			return 0;
 			break;
 		case 5:
 			printf(DARK_RED "5" RESET);
+			return 0;
 			break;
 		case 6:
 			printf(YELLOW "6" RESET);
+			return 0;
 			break;
 		case 7:
 			printf(PURPLE "7" RESET);
+			return 0;
 			break;
 		case 8:
 			printf(BLUE "8" RESET);
+			return 0;
 			break;
 		case 9:
 			printf("B");
+			return -1;
 			break;
 		default:
 			printf("?");
+			return -1;
 			break;
 	}
 }

@@ -21,8 +21,8 @@
 #define RESET   "\x1B[0m"
 
 
-void desing_print_matrix(int **matrix, int rows, int cols, int x_cursor, int y_cursor);
-void get_ascii_to_print(int value); 
+int desing_print_matrix(int **matrix, int rows, int cols, int x_cursor, int y_cursor);
+int get_ascii_to_print(int value); 
 
 int print_level_menu(int *row, int *col, float *mine_percentage); 
 

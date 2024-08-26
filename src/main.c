@@ -59,7 +59,7 @@ int main(void) {
 
 	int level;
 	char buffer[100];
-	int key, i;
+	int key, i, count = 0;
 
 	// initials a random time used to fill our game 
 	srand(time(NULL));
@@ -77,10 +77,15 @@ int main(void) {
 	fillMatrix(matrix2, row, col);
 	
 
-	desing_print_matrix(matrix1, row, col, x_cursor, y_cursor);
+//	desing_print_matrix(matrix1, row, col, x_cursor, y_cursor);
 	
 	// Game Loop, EXIT using 'q'
 	do {
+		count = desing_print_matrix(matrix2, row, col, x_cursor, y_cursor);
+		if (count == -1) {
+			break;
+		}
+
 		text5_func();
 		// Read user input into String
 		fgets(buffer, sizeof(buffer), stdin);
@@ -98,8 +103,9 @@ int main(void) {
 			logic_key_aktion(row, col, key, &x_cursor, &y_cursor, matrix1, matrix2);
 		}
 
+		text3_func(row, col, mine_percentage, level);
+		printf("Map: %i/%i\n", count, row * col);
 			
-		desing_print_matrix(matrix2, row, col, x_cursor, y_cursor);
 	} while (key != 'q');
 	
 	
