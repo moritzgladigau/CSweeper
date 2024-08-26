@@ -58,23 +58,31 @@ int logic_count_surounding_mine(int **matrix, int rows, int cols, int x, int y) 
 }
 
 // Move the Cursor
-int logic_key_aktion(int rows, int cols, int key, int *x_cursor, int *y_cursor) {
-	if (key == KEY_ARROW_DOWN || key == KEY_ARROW_UP || key == KEY_ARROW_LEFT || key == KEY_ARROW_RIGHT) {
+int logic_key_aktion(int rows, int cols, int key, int *x_cursor, int *y_cursor, int **matrix1, int **matrix2) {
+//	if (key == KEY_ARROW_DOWN || key == KEY_ARROW_UP || key == KEY_ARROW_LEFT || key == KEY_ARROW_RIGHT) {
 		switch (key) {
 			case KEY_ARROW_UP:
-				*y_cursor = ((*y_cursor) - 1 > 0) ? (*y_cursor) - 1 : rows - 1;
+				*y_cursor = ((*y_cursor) - 1 >= 0) ? (*y_cursor) - 1 : rows - 1;
 				break;
 			case KEY_ARROW_DOWN:
 				*y_cursor = ((*y_cursor) + 1 < rows) ? (*y_cursor) + 1 : 0;
 				break;
 			case KEY_ARROW_LEFT:
-				*x_cursor = ((*x_cursor) - 1 > 0) ? (*x_cursor) - 1 : cols - 1;
+				*x_cursor = ((*x_cursor) - 1 >= 0) ? (*x_cursor) - 1 : cols - 1;
 				break;
 			case KEY_ARROW_RIGHT:
 				*x_cursor = ((*x_cursor) + 1 < cols) ? (*x_cursor) + 1 : 0;
 				break;
+			case 'o':
+				matrix2[*y_cursor][*x_cursor] = (matrix2[*y_cursor][*x_cursor] == -2) ? matrix2[*y_cursor][*x_cursor] : matrix1[*y_cursor][*x_cursor];
+				break;
+			case 'f':
+				if (matrix2[*y_cursor][*x_cursor] < 0) {
+					matrix2[*y_cursor][*x_cursor] = (matrix2[*y_cursor][*x_cursor] == -2) ? -1 : -2; 
+				}
+				break;
 		}
-	}
+//	}
 	return 1;
 
 }

@@ -58,6 +58,8 @@ int main(void) {
 	int** matrix2;
 
 	int level;
+	char buffer[100];
+	int key, repat, i;
 
 	// initials a random time used to fill our game 
 	srand(time(NULL));
@@ -71,26 +73,37 @@ int main(void) {
 	createMatrix(&matrix1, row, col);
 	logic_fill_matrix(matrix1, row, col, mine_percentage);
 
+	createMatrix(&matrix2, row, col);
+	fillMatrix(matrix2, row, col);
+	
+
 	desing_print_matrix(matrix1, row, col, x_cursor, y_cursor);
 	
-	// Move cursor 
-	text5_func();
-	char buffer[100] = "4 \033[A";
-	fgets(buffer, sizeof(buffer), stdin);
+	// Game Loop, EXIT using 'q'
+	do {
+		// Move cursor 
+		text5_func();
+		fgets(buffer, sizeof(buffer), stdin);
 
-	int key, i;
+		key = userinput(buffer, 1);
+		repat = userinput(buffer, 2);
 
-	key = userinput(buffer, 1);
+		if (key == KEY_ARROW_UP || key == KEY_ARROW_DOWN || key == KEY_ARROW_LEFT || key == KEY_ARROW_RIGHT) {
+			for (i = 0; i < userinput(buffer, 2); i++) {
+				logic_key_aktion(row, col, key, &x_cursor, &y_cursor, matrix1, matrix2);
+			}
+		} else {
+			logic_key_aktion(row, col, key, &x_cursor, &y_cursor, matrix1, matrix2);
+		}
 
-	for (i = 0; i < userinput(buffer, 2); i++) {
-		logic_key_aktion(row, col, key, &x_cursor, &y_cursor);
-	}
-	
-	desing_print_matrix(matrix1, row, col, x_cursor, y_cursor);
+			
+		desing_print_matrix(matrix2, row, col, x_cursor, y_cursor);
+	} while (key != 'q');
 	
 	
 	// Important: free the allocated space of the matrix
 	freeMatrix(matrix1, row);
+	freeMatrix(matrix2, row);
 	
 	// end the program
 	return 0;

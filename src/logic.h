@@ -13,7 +13,7 @@ int logic_count_surounding_mine(int **matrix, int rows, int cols, int x, int y);
 void logic_set_numbers(int **matrix, int rows, int cols);
 void logic_fill_matrix(int **matrix, int rows, int cols, float mine_percentage);
 
-int logic_key_aktion(int rows, int cols, int key, int *x_cursor, int *y_cursor); 
+int logic_key_aktion(int rows, int cols, int key, int *x_cursor, int *y_cursor, int **matrix1, int **matrix2); 
 
 
 #endif
