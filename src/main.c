@@ -59,7 +59,7 @@ int main(void) {
 
 	int level;
 	char buffer[100];
-	int key, repat, i;
+	int key, i;
 
 	// initials a random time used to fill our game 
 	srand(time(NULL));
@@ -81,13 +81,15 @@ int main(void) {
 	
 	// Game Loop, EXIT using 'q'
 	do {
-		// Move cursor 
 		text5_func();
+		// Read user input into String
 		fgets(buffer, sizeof(buffer), stdin);
 
+		// Divine Between user enter a Number (repeat) and the Acton Key (key)
 		key = userinput(buffer, 1);
-		repat = userinput(buffer, 2);
 
+		// If user enter a Movement Key and a number repeat the user Key in the Background
+		// Else do the Key Acton just ones (open a field or flag it)
 		if (key == KEY_ARROW_UP || key == KEY_ARROW_DOWN || key == KEY_ARROW_LEFT || key == KEY_ARROW_RIGHT) {
 			for (i = 0; i < userinput(buffer, 2); i++) {
 				logic_key_aktion(row, col, key, &x_cursor, &y_cursor, matrix1, matrix2);
