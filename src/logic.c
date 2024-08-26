@@ -75,6 +75,10 @@ int logic_key_aktion(int rows, int cols, int key, int *x_cursor, int *y_cursor, 
 				break;
 			case 'o':
 				matrix2[*y_cursor][*x_cursor] = (matrix2[*y_cursor][*x_cursor] == -2) ? matrix2[*y_cursor][*x_cursor] : matrix1[*y_cursor][*x_cursor];
+				// If an field with no Input (0) is open we want to open the fields around it recursive 
+				if (matrix2[*y_cursor][*x_cursor] == 0) {
+					// TODO: Call an open field recursive Funktion 
+				}
 				break;
 			case 'f':
 				if (matrix2[*y_cursor][*x_cursor] < 0) {
